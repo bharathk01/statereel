@@ -44,7 +44,7 @@
     position:sticky; top:0; z-index:60; background:rgba(255,255,255,.93); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .toprow{display:flex; align-items:center; gap:12px; padding:9px 16px; max-width:1680px; margin:0 auto}
+  .toprow{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:9px 16px; max-width:1680px; margin:0 auto}
   .wordmark{display:block; height:34px; width:auto}
   .brand{font-weight:680; letter-spacing:-.15px; white-space:nowrap}
   a.brand{display:block; color:inherit; text-decoration:none; border-radius:8px; padding:2px 6px; margin:-2px -6px; transition:background .15s}
@@ -52,6 +52,8 @@
   a.brand:hover .wordmark{opacity:.85}
   .brand em{display:block; margin-top:2px; font-style:normal; font-weight:400; font-size:11px; color:var(--dimmer); letter-spacing:0}
   .grow{flex:1}
+  .acts{display:flex; gap:12px; margin-left:auto}   /* drops to a second row, right-aligned, when the bar is narrow */
+  .fwpick .sel{max-width:340px; text-overflow:ellipsis}   /* format labels are long; the open menu shows them in full */
   .runpill{
     display:none; align-items:center; gap:7px; border-radius:999px; padding:4px 11px 4px 8px;
     font-size:12.5px; font-weight:600; border:1px solid var(--line); background:var(--panel2);
@@ -93,7 +95,7 @@
   /* ================= shell ================= */
   .shell{display:flex; gap:20px; max-width:1680px; margin:0 auto; padding:18px 16px 90px; align-items:flex-start}
   .rail{
-    width:var(--railw); flex:none; position:sticky; top:96px; max-height:calc(100vh - 116px);
+    width:var(--railw); flex:none; position:sticky; top:calc(var(--toph, 88px) + 8px); max-height:calc(100vh - 116px);
     display:flex; flex-direction:column; gap:10px;
   }
   .rail.hide{display:none}
@@ -158,6 +160,11 @@
     border-radius:50%; background:var(--accent); color:#fff; font-size:11px; vertical-align:1px}
   /* top-bar actions are tinted so they read as clickable against the white header */
   header.top .btn{background:var(--accentbg); border-color:var(--accentline); color:var(--accent); font-weight:600}
+  /* modal close: same look as the top-bar buttons, turns red on hover */
+  .xclose{margin-left:auto; width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center;
+    border-radius:8px; border:1px solid var(--accentline); background:var(--accentbg); color:var(--accent);
+    font-size:14px; font-weight:700; line-height:1; cursor:pointer; box-shadow:var(--sh1)}
+  .xclose:hover, .xclose:focus-visible{background:var(--err); border-color:var(--err); color:#fff; outline:none}
   header.top .btn:hover{background:var(--accent); border-color:var(--accent); color:#fff}
   .paste-guide{width:100%; margin:6px 0 4px; border-collapse:collapse; font-size:12px}
   .paste-guide th{text-align:left; font-weight:600; color:var(--fg); padding:5px 8px; border-bottom:1px solid var(--line2)}
@@ -316,7 +323,7 @@
     display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:12px; padding:9px 11px;
     background:rgba(255,255,255,.95); backdrop-filter:blur(8px);
     border:1px solid var(--line); border-radius:10px; box-shadow:var(--sh1);
-    position:sticky; top:88px; z-index:35;
+    position:sticky; top:calc(var(--toph, 88px) + 6px); z-index:35;
   }
   .searchwrap{position:relative; flex:1; min-width:190px; display:flex; align-items:center}
   .searchwrap input{
@@ -539,7 +546,7 @@
   details.narrbox > summary{font-size:13px; font-weight:600; padding:10px 14px}
   details.narrbox > summary .sub{color:var(--dimmer); font-weight:400; margin-left:6px}
 
-  .progress{position:sticky; top:96px; z-index:45; display:flex; align-items:center; gap:10px; margin-bottom:12px;
+  .progress{position:sticky; top:calc(var(--toph, 88px) + 8px); z-index:45; display:flex; align-items:center; gap:10px; margin-bottom:12px;
     background:var(--panel); border:1px solid var(--accentline); border-radius:10px; padding:9px 12px; box-shadow:var(--sh2)}
   .progress[hidden]{display:none}
   .progress .pbar{flex:1; height:7px; border-radius:4px; background:var(--panel3); overflow:hidden}
@@ -558,7 +565,7 @@
     display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px; padding:9px 11px;
     background:rgba(255,255,255,.95); backdrop-filter:blur(8px);
     border:1px solid var(--line); border-radius:10px; box-shadow:var(--sh1);
-    position:sticky; top:88px; z-index:35;
+    position:sticky; top:calc(var(--toph, 88px) + 6px); z-index:35;
   }
   .playbar input[type=range]{flex:1; min-width:140px; accent-color:var(--accent)}
   .playbar .step{font-family:var(--mono); font-size:12px; color:var(--dim); white-space:nowrap; font-variant-numeric:tabular-nums}
@@ -573,8 +580,8 @@
   select.sel:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accentbg)}
 
   .flowgrid{display:grid; grid-template-columns:minmax(0,1fr) 268px; gap:18px; align-items:start}
-  @media (max-width:1000px){ .flowgrid{grid-template-columns:1fr} .fstate{display:none} }
-  .fstate{position:sticky; top:150px}
+  @media (max-width:1000px){ .flowgrid{grid-template-columns:minmax(0,1fr)} .fstate{display:none} }
+  .fstate{position:sticky; top:calc(var(--toph, 88px) + 62px)}
 
   .fchain{display:flex; flex-direction:column; align-items:stretch; padding-bottom:10px}
   .fcenter{display:flex; justify-content:center}
@@ -584,6 +591,7 @@
     align-self:center; font-size:10.5px; font-weight:800; letter-spacing:1px; color:var(--dimmer);
     border:1px dashed var(--line); border-radius:999px; padding:3px 14px; background:var(--panel2);
   }
+  .fbranch > .fitem, .fcenter > .fitem{min-width:min(230px,100%); max-width:min(460px,100%)}
   .fbranch{display:flex; gap:14px; justify-content:center; position:relative; padding-top:16px; flex-wrap:wrap}
   .fbranch::before{
     content:""; position:absolute; top:0; left:22%; right:22%; height:2px; background:var(--line); border-radius:2px;
@@ -629,6 +637,35 @@
   .slist .li.err{border-color:var(--errline); background:var(--errbg); color:var(--err)}
 
   /* print */
+  /* phones: the top bar stacks into rows (logo + status + help, format picker, report actions)
+     and stops being sticky so it doesn't eat a fifth of the screen; tabs scroll sideways */
+  @media (max-width:760px){
+    header.top{position:static}
+    .toprow{flex-wrap:wrap; gap:8px 10px; padding:8px 12px}
+    .wordmark{height:28px}
+    .brand em{font-size:10px}
+    .grow{display:none}
+    .runpill{order:1; font-size:12px; white-space:nowrap}
+    #btnHelp{order:2; margin-left:auto}
+    .fwpick.show{order:3; flex:1 1 100%; min-width:0}
+    .fwpick .sel{flex:1; min-width:0; max-width:none}
+    .acts{order:4; flex:1 1 100%; margin-left:0; gap:6px; overflow-x:auto; scrollbar-width:none}
+    .acts:not(:has(.btn:not([hidden]))){display:none}
+    .tabs{overflow-x:auto; scrollbar-width:none; padding:0 6px}
+    .tab{flex:none; white-space:nowrap; padding:8px 10px 9px}
+    .shell{padding:12px 10px 70px}
+    .playbar, .toolbar{top:0}
+    /* framework guide: one card per framework instead of three cramped columns */
+    .paste-guide thead{display:none}
+    .paste-guide tr{display:block; padding:8px 0; border-bottom:1px solid var(--line)}
+    .paste-guide td{display:block; border:none; padding:2px 0}
+    .paste-guide td:first-child{font-weight:600; white-space:normal}
+    .paste-guide td:nth-child(2)::before{content:"Turn on: "; color:var(--dim)}
+    .paste-guide td:nth-child(3)::before{content:"Looks like: "; color:var(--dim)}
+    .progress{top:8px}
+    .chip{display:inline-block; max-width:100%; overflow:hidden; text-overflow:ellipsis; vertical-align:middle}   /* long error chips */
+  }
+
   @media print{
     body{background:#fff}
     header.top,.rail,.toolbar,#inputPanel,.modal,.toast,footer,.cright,.cpy,.tab,.btn{display:none !important}
@@ -652,10 +689,12 @@
       <select class="sel" id="adapterSel" title="Which framework format this log was parsed as"></select>
     </label>
     <div class="grow"></div>
-    <button class="btn sm" id="btnInput" hidden>Input</button>
-    <button class="btn sm" id="btnCopySummary" hidden>Copy summary</button>
-    <button class="btn sm" id="btnExport" hidden>Export JSON</button>
-    <button class="btn sm" id="btnPrint" hidden>Print / PDF</button>
+    <div class="acts">
+      <button class="btn sm" id="btnInput" hidden>Input</button>
+      <button class="btn sm" id="btnCopySummary" hidden>Copy summary</button>
+      <button class="btn sm" id="btnExport" hidden>Export JSON</button>
+      <button class="btn sm" id="btnPrint" hidden>Print / PDF</button>
+    </div>
     <button class="btn sm" id="btnHelp" title="What to paste, and keyboard shortcuts (?)">? Help</button>
   </div>
   <nav class="tabs" id="tabs" hidden>
@@ -910,7 +949,7 @@
 
 <div class="modal" id="help">
   <div class="box">
-    <div class="phead"><h3>Help</h3><span class="sub">press Esc to close</span></div>
+    <div class="phead"><h3>Help</h3><button class="xclose" id="helpClose" title="Close (Esc)" aria-label="Close help">✕</button></div>
     <div class="pbody">
       <h4 class="help-h">What to print for each framework</h4>
       <p class="help-p">Turn on your agent's debug output, run it, and paste everything it printed. The whole run is best.</p>
@@ -3205,7 +3244,10 @@ function setView(v){
   if(STATE.view === 'flow' && v !== 'flow') pausePlay();
   STATE.view = v;
   $$('.view').forEach(function(s){ s.hidden = (s.id !== 'view-' + v); });
-  $$('.tab').forEach(function(t){ t.classList.toggle('on', t.dataset.view === v); });
+  $$('.tab').forEach(function(t){
+    t.classList.toggle('on', t.dataset.view === v);
+    if(t.dataset.view === v && t.offsetParent) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });   // phones scroll the tab strip
+  });
   $('#rail').classList.toggle('hide', !(v === 'timeline' || v === 'overview'));
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
@@ -4538,6 +4580,10 @@ $('#btnClear').addEventListener('click', function(){
   ['#btnInput', '#btnCopySummary', '#btnExport', '#btnPrint'].forEach(function(sel){ $(sel).hidden = true; });
   $('#inputPanel').hidden = false; $('#src').focus();
 });
+// sticky bars sit just under the top bar, whose height changes when it wraps onto two rows
+if(window.ResizeObserver) new ResizeObserver(function(){
+  document.documentElement.style.setProperty('--toph', $('header.top').offsetHeight + 'px');
+}).observe($('header.top'));
 // Home hides the report but keeps it (and the paste) in memory, so the forward arrow can bring it back.
 function setHome(home){
   if(home) pausePlay();
@@ -4637,6 +4683,7 @@ var helpBox = $('#help');
 $('#btnHelp').addEventListener('click', function(){ helpBox.classList.add('show'); });
 $('#lnkPaste').addEventListener('click', function(e){ e.preventDefault(); helpBox.classList.add('show'); helpBox.querySelector('.box').scrollTop = 0; });
 helpBox.addEventListener('click', function(e){ if(e.target === helpBox) helpBox.classList.remove('show'); });
+$('#helpClose').addEventListener('click', function(){ helpBox.classList.remove('show'); });   // phones have no Esc key
 
 /* scroll spy for the rail */
 var spy = null;
