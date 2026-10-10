@@ -1,4 +1,4 @@
-"""Regenerate the README screenshots in docs/ from publishable built-in samples.
+"""Regenerate the README screenshots in assets/screenshots/ from publishable built-in samples.
 
 Run: python tools/screenshots.py
 Uses only the real deepagents capture and the fictional framework samples, never private logs.
@@ -9,19 +9,17 @@ from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 VIEWER = ROOT / "statereel.html"
-DOCS = ROOT / "docs"
+DOCS = ROOT / "assets" / "screenshots"
 
 SHOTS = [
     # (sample, tab, file, prices to type so the cost tile is filled)
     ("deepagents", "overview", "overview.png", {"input": "1.25", "cached": "0.125", "output": "10"}),
     ("deepagents", "flow", "flow.png", None),
-    ("deepagents", "timeline", "timeline.png", None),
-    ("crewai", "flow", "crewai-flow.png", None),
 ]
 
 
 def main():
-    DOCS.mkdir(exist_ok=True)
+    DOCS.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1440, "height": 920}, device_scale_factor=1)

@@ -1,6 +1,6 @@
 # Weekly check against the LATEST framework releases. Each capture script drives the real
 # framework with a scripted fake model (no API key), so only the framework varies: if a
-# release changes how it prints state, tests/real.test.js names the fixture and field.
+# release changes how it prints state, tests/real.test.js names the fixture and the count that broke.
 name: compat
 
 on:

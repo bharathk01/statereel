@@ -25,11 +25,14 @@ const ACCIDENTAL = {
   url: ['https://github.com/langchain-ai/langgraph/issues/1234', 'http://localhost:8080/runs/42'],
   traceback: ['Traceback (most recent call last):' + NL + '  File "app.py", line 12, in <module>' + NL +
               '    main()' + NL + 'ValueError: bad'],
-  markup: ['<html><body><h1>Hello</h1></body></html>', '<?xml version="1.0"?><root/>'],
-  data: ['{"name": "my-app", "version": "1.0.0", "scripts": {"test": "jest"}}', "{'a': 1, 'b': [1, 2, 3]}", '[1, 2, 3, 4]'],
+  html: ['<html><body><h1>Hello</h1></body></html>', '<!DOCTYPE html><html></html>'],
+  xml: ['<?xml version="1.0"?><root/>', '<dmodule><content/></dmodule>'],
+  json: ['{"name": "my-app", "version": "1.0.0", "scripts": {"test": "jest"}}', '[1, 2, 3, 4]'],
+  data: ["{'a': 1, 'b': [1, 2, 3]}"],
+  csv: ['id,name,score' + NL + '1,alice,3'],
   code: ['def get_weather(city: str) -> str:' + NL + '    return requests.get(URL).text', 'import os' + NL + 'print(os.getcwd())'],
   applog: ['2026-10-09 21:35:01 INFO server started on port 8080' + NL + '2026-10-09 21:35:02 WARN slow request'],
-  text: ['hey can you check why the agent failed yesterday?', '42', 'id,name,score' + NL + '1,alice,3',
+  text: ['hey can you check why the agent failed yesterday?', '42',
          'Hi team,' + NL + NL + 'Please find the report attached.'],
 };
 
@@ -48,6 +51,15 @@ assert(!forced.diag.notAgentLog, 'forced plain text is not blocked');
 assert(forced.messages.length === 1 && forced.messages[0].kind === 'other', 'plain text is not an AI message (got ' + forced.messages[0].kind + ')');
 assert(forced.stats.llmCalls === 0, 'plain text is not a model call');
 assert(api.buildInsights(forced).status === 'text', 'plain text has no success/failure status');
+
+// forced view names the paste by what it is and formats structured content as a code block
+const fj = api.parseAgentLog(ACCIDENTAL.json[0], 'raw-text').messages[0];
+assert(fj.type === 'Pasted JSON', 'JSON paste labelled Pasted JSON (got ' + fj.type + ')');
+assert(fj.content.startsWith('```json') && fj.content.includes('\n  "version": "1.0.0"'), 'JSON paste pretty-printed in a json block');
+const fc = api.parseAgentLog(ACCIDENTAL.code[0], 'raw-text').messages[0];
+assert(fc.type === 'Pasted code' && fc.content.startsWith('```'), 'code paste shown as a code block');
+const ft = api.parseAgentLog(ACCIDENTAL.text[0], 'raw-text').messages[0];
+assert(ft.type === 'Pasted text' && !ft.content.startsWith('```'), 'plain text stays plain');
 
 // tiny but real inputs must still build a report
 const REAL_SMALL = {
