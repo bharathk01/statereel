@@ -1,0 +1,43 @@
+{
+  "key": "pydantic_ai",
+  "framework": "Pydantic AI",
+  "versions": {
+    "pydantic-ai-slim": "2.54.0"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/pydantic_ai_capture.py (FunctionModel, no API key)",
+  "fixtures": {
+    "all_messages_repr.log": {
+      "adapter": "python-literal",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 158,
+      "output_tokens": 34
+    },
+    "messages_per_line.log": {
+      "adapter": "repr-stream",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 158,
+      "output_tokens": 34
+    },
+    "all_messages_json.log": {
+      "adapter": "json",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 158,
+      "output_tokens": 34
+    }
+  },
+  "note": "token counts are Pydantic AI's own usage accounting for the run"
+}

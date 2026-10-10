@@ -1,0 +1,64 @@
+model_version=None content=Content(
+  parts=[
+    Part(
+      function_call=FunctionCall(
+        args={
+          'city': 'Paris'
+        },
+        id='call_paris',
+        name='get_weather'
+      )
+    ),
+    Part(
+      function_call=FunctionCall(
+        args={
+          'city': 'Atlantis'
+        },
+        id='call_atlantis',
+        name='get_weather'
+      )
+    ),
+  ],
+  role='model'
+) grounding_metadata=None partial=None turn_complete=None turn_complete_reason=None interaction_status=None finish_reason=None error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=GenerateContentResponseUsageMetadata(
+  candidates_token_count=36,
+  prompt_token_count=410,
+  total_token_count=446
+) live_session_resumption_update=None live_session_id=None go_away=None voice_activity=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None environment_id=None invocation_id='e-e9896295-8b2e-4945-9cb6-6e7e4184f258' author='weather_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, transfer_reason=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, route=None, render_ui_widgets=None, set_model_response=None) output=None node_info=NodeInfo(path='weather_agent@1', output_for=None, message_as_output=None) long_running_tool_ids=set() branch=None isolation_scope=None id='152ff46c-e8ec-469f-8bee-149dd28e00ef' timestamp=1791557845.9081645
+model_version=None content=Content(
+  parts=[
+    Part(
+      function_response=FunctionResponse(
+        id='call_paris',
+        name='get_weather',
+        response={
+          'city': 'Paris',
+          'conditions': 'light rain',
+          'temp_c': 18
+        }
+      )
+    ),
+    Part(
+      function_response=FunctionResponse(
+        id='call_atlantis',
+        name='get_weather',
+        response={
+          'error': 'no weather station found for Atlantis'
+        }
+      )
+    ),
+  ],
+  role='user'
+) grounding_metadata=None partial=None turn_complete=None turn_complete_reason=None interaction_status=None finish_reason=None error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=None live_session_resumption_update=None live_session_id=None go_away=None voice_activity=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None environment_id=None invocation_id='e-e9896295-8b2e-4945-9cb6-6e7e4184f258' author='weather_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, transfer_reason=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, route=None, render_ui_widgets=None, set_model_response=None) output=None node_info=NodeInfo(path='weather_agent@1', output_for=None, message_as_output=None) long_running_tool_ids=None branch=None isolation_scope=None id='025d86b8-5825-44a8-a8e1-21544953feee' timestamp=1791557845.91139
+model_version=None content=Content(
+  parts=[
+    Part(
+      text='Paris is 18C with light rain; there is no weather data for Atlantis.'
+    ),
+  ],
+  role='model'
+) grounding_metadata=None partial=None turn_complete=None turn_complete_reason=None interaction_status=None finish_reason=None error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=GenerateContentResponseUsageMetadata(
+  candidates_token_count=21,
+  prompt_token_count=520,
+  total_token_count=541
+) live_session_resumption_update=None live_session_id=None go_away=None voice_activity=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None environment_id=None invocation_id='e-e9896295-8b2e-4945-9cb6-6e7e4184f258' author='weather_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, transfer_reason=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, route=None, render_ui_widgets=None, set_model_response=None) output=None node_info=NodeInfo(path='weather_agent@1', output_for=None, message_as_output=None) long_running_tool_ids=None branch=None isolation_scope=None id='a53d4f65-67a3-4e83-b49d-961c71afdf80' timestamp=1791557845.9125943

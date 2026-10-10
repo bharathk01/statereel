@@ -1,0 +1,28 @@
+# Tag a version (git tag v0.1.0 && git push --tags) to publish statereel.html as a
+# downloadable release asset.
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Test before releasing
+        run: bash tests/run-all.sh --no-e2e
+
+      - name: Create the release with the single-file viewer attached
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" statereel.html --title "StateReel $GITHUB_REF_NAME" --generate-notes

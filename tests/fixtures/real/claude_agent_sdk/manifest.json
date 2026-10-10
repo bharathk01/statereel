@@ -1,0 +1,33 @@
+{
+  "key": "claude_agent_sdk",
+  "framework": "Claude Agent SDK",
+  "versions": {
+    "claude-agent-sdk": "0.2.165"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/claude_agent_sdk_capture.py (CLI records through the SDK's parser; --live for a real session)",
+  "fixtures": {
+    "stream_json.log": {
+      "adapter": "ndjson-events",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 8060,
+      "output_tokens": 94
+    },
+    "sdk_messages.log": {
+      "adapter": "repr-stream",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 8060,
+      "output_tokens": 94
+    }
+  },
+  "note": "no live session: message objects come from the installed SDK's own parser"
+}

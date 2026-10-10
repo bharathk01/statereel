@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Parser, insight and real-capture tests
+        run: bash tests/run-all.sh --no-e2e
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install the browser test tooling
+        run: |
+          pip install playwright==1.52.0
+          python -m playwright install --with-deps chromium
+
+      - name: Browser end-to-end tests (every sample, every tab, CSP enforced)
+        run: python tests/e2e.py

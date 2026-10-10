@@ -1,0 +1,29 @@
+{
+  "key": "crewai",
+  "framework": "CrewAI",
+  "versions": {
+    "crewai": "1.15.26"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/crewai_capture.py (scripted BaseLLM, no API key)",
+  "fixtures": {
+    "verbose_plain.log": {
+      "adapter": "crewai-console",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 3,
+      "user_prompt": true
+    },
+    "verbose_ansi.log": {
+      "adapter": "crewai-console",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 3,
+      "user_prompt": true
+    }
+  },
+  "note": "CrewAI's ReAct protocol calls tools one at a time, so this run makes 3 model calls"
+}

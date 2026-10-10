@@ -1,0 +1,42 @@
+{
+  "key": "autogen",
+  "framework": "Microsoft AutoGen",
+  "versions": {
+    "autogen-agentchat": "0.7.5",
+    "autogen-ext": "0.7.5",
+    "autogen-core": "0.7.5"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/autogen_capture.py (ReplayChatCompletionClient, no API key)",
+  "fixtures": {
+    "console.log": {
+      "adapter": "autogen-console",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true
+    },
+    "task_result.log": {
+      "adapter": "pydantic-str",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 960,
+      "output_tokens": 60
+    },
+    "stream_reprs.log": {
+      "adapter": "pydantic-str",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "user_prompt": true,
+      "input_tokens": 960,
+      "output_tokens": 60
+    }
+  }
+}

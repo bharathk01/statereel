@@ -1,0 +1,21 @@
+# Developer / CI tooling only. People using StateReel need nothing but a browser.
+
+# Browser end-to-end tests. 1.52 is the last release with Ubuntu 20.04 browser builds and
+# also runs on ubuntu-latest.
+playwright==1.52.0
+
+# Real-capture generators (tools/capture/*.py), pinned to the versions recorded in
+# tests/fixtures/real/*/manifest.json. The weekly compat workflow installs the latest instead.
+langgraph==1.2.14
+langchain==1.4.4
+langchain-core==1.6.9
+deepagents==0.7.23
+pydantic-ai-slim==2.54.0
+autogen-agentchat==0.7.5
+autogen-ext==0.7.5
+autogen-core==0.7.5
+google-adk==2.11.0
+google-genai==2.29.0
+claude-agent-sdk==0.2.165
+
+# CrewAI's pins clash with Google ADK's, so it lives in requirements-crewai.txt (own environment).

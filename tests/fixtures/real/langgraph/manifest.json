@@ -1,0 +1,109 @@
+{
+  "key": "langgraph",
+  "framework": "LangGraph / Deep Agents",
+  "versions": {
+    "deepagents": "0.7.23",
+    "langgraph": "1.2.14",
+    "langchain": "1.4.4",
+    "langchain-core": "1.6.9"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/langgraph_deepagents.py (scripted fake model, no API key)",
+  "fixtures": {
+    "values_updates.log": {
+      "adapter": "langgraph-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": true
+    },
+    "values_only.log": {
+      "adapter": "langgraph-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": true
+    },
+    "updates_only.log": {
+      "adapter": "dict-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": false
+    },
+    "messages_stream.log": {
+      "adapter": "langgraph-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "user_prompt": false
+    },
+    "debug_true.log": {
+      "adapter": "langgraph-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": true
+    },
+    "debug_stream.log": {
+      "adapter": "dict-stream",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": false
+    },
+    "final_state.log": {
+      "adapter": "python-literal",
+      "tool_calls": 4,
+      "paired": 4,
+      "tool_errors": 1,
+      "model_calls": 4,
+      "input_tokens": 9600,
+      "output_tokens": 193,
+      "state": {
+        "todos": 2,
+        "files": 1
+      },
+      "user_prompt": true
+    }
+  }
+}

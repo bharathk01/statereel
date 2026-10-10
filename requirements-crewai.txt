@@ -1,0 +1,5 @@
+# CrewAI capture environment (kept separate: its mcp/opentelemetry pins clash with Google ADK).
+#   python -m venv .venv-crewai && .venv-crewai/bin/pip install -r requirements-crewai.txt
+crewai==1.15.26
+# Only on distros whose SQLite is older than 3.35 (e.g. Ubuntu 20.04); Chroma needs >= 3.35.
+pysqlite3-binary; sys_platform == "linux"

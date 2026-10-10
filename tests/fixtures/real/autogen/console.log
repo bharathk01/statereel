@@ -1,0 +1,8 @@
+---------- TextMessage (user) ----------
+What's the weather in Paris and in Atlantis? Answer in one line.
+---------- ToolCallRequestEvent (weather_agent) ----------
+[FunctionCall(id='call_paris', arguments='{"city": "Paris"}', name='get_weather'), FunctionCall(id='call_atlantis', arguments='{"city": "Atlantis"}', name='get_weather')]
+---------- ToolCallExecutionEvent (weather_agent) ----------
+[FunctionExecutionResult(content='{"city": "Paris", "temp_c": 18, "conditions": "light rain"}', name='get_weather', call_id='call_paris', is_error=False), FunctionExecutionResult(content='{"error": "no weather station found for Atlantis"}', name='get_weather', call_id='call_atlantis', is_error=False)]
+---------- TextMessage (weather_agent) ----------
+Paris is 18C with light rain; there is no weather data for Atlantis.

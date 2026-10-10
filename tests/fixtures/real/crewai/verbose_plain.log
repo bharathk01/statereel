@@ -1,0 +1,102 @@
+╭───────────────────────── 🚀 Crew Execution Started ──────────────────────────╮
+│                                                                              │
+│  Crew Execution Started                                                      │
+│  Name: crew                                                                  │
+│  ID: 1c7494c0-f838-4fb8-bc94-9cf31085aa89                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 📋 Task Started ───────────────────────────────╮
+│                                                                              │
+│  Task Started                                                                │
+│  Name: What's the weather in Paris and in Atlantis? Answer in one line.      │
+│  ID: 8c9a9afd-6588-4066-b8ec-1737d1ed042c                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 🤖 Agent Started ──────────────────────────────╮
+│                                                                              │
+│  Agent: Weather Analyst                                                      │
+│                                                                              │
+│  Task: What's the weather in Paris and in Atlantis? Answer in one line.      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────── 🔧 Tool Execution Started (#1) ───────────────────────╮
+│                                                                              │
+│  Tool: get_weather                                                           │
+│  Args: {"city": "Paris"}                                                     │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────── Tool Output ─────────────────────────────────╮
+│                                                                              │
+│  {"city": "Paris", "temp_c": 18, "conditions": "light rain"}                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────── ✅ Tool Execution Completed (#1) ──────────────────────╮
+│                                                                              │
+│  Tool Completed                                                              │
+│  Tool: get_weather                                                           │
+│  Output: {"city": "Paris", "temp_c": 18, "conditions": "light rain"}         │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+╭─────────────────────── 🔧 Tool Execution Started (#2) ───────────────────────╮
+│                                                                              │
+│  Tool: get_weather                                                           │
+│  Args: {"city": "Atlantis"}                                                  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────── ✅ Tool Execution Completed (#2) ──────────────────────╮
+│                                                                              │
+│  Tool Completed                                                              │
+│  Tool: get_weather                                                           │
+│  Output: {"error": "no weather station found for Atlantis"}                  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────── Tool Output ─────────────────────────────────╮
+│                                                                              │
+│  {"error": "no weather station found for Atlantis"}                          │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+[35m[Finalize] todos_count=0, todos_with_results=0[0m
+╭─────────────────────────── ✅ Agent Final Answer ────────────────────────────╮
+│                                                                              │
+│  Agent: Weather Analyst                                                      │
+│                                                                              │
+│  Final Answer:                                                               │
+│  Paris is 18C with light rain; there is no weather data for Atlantis.        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────── 📋 Task Completion ─────────────────────────────╮
+│                                                                              │
+│  Task Completed                                                              │
+│  Name: What's the weather in Paris and in Atlantis? Answer in one line.      │
+│  Agent: Weather Analyst                                                      │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── Crew Completion ───────────────────────────────╮
+│                                                                              │
+│  Crew Execution Completed                                                    │
+│  Name: crew                                                                  │
+│  ID: 1c7494c0-f838-4fb8-bc94-9cf31085aa89                                    │
+│  Final Output: Paris is 18C with light rain; there is no weather data for    │
+│  Atlantis.                                                                   │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

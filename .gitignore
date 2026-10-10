@@ -1,0 +1,10 @@
+# local working copies and machine-specific files
+backups/
+.claude/
+.python-version
+.private-patterns
+__pycache__/
+*.pyc
+node_modules/
+test-results/
+_site/

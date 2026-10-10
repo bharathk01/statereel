@@ -1,0 +1,80 @@
+# Weekly check against the LATEST framework releases. Each capture script drives the real
+# framework with a scripted fake model (no API key), so only the framework varies: if a
+# release changes how it prints state, tests/real.test.js names the fixture and field.
+name: compat
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # CrewAI gets its own job: its pins clash with Google ADK's
+          - group: main
+            packages: langgraph langchain langchain-core deepagents pydantic-ai-slim autogen-agentchat autogen-ext google-adk claude-agent-sdk
+            scripts: langgraph_deepagents pydantic_ai_capture autogen_capture google_adk_capture claude_agent_sdk_capture
+          - group: crewai
+            packages: crewai
+            scripts: crewai_capture
+    name: latest ${{ matrix.group }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install the latest framework releases
+        run: pip install --upgrade ${{ matrix.packages }}
+
+      - name: Re-capture real output
+        shell: bash
+        run: |
+          cd tools/capture
+          for s in ${{ matrix.scripts }}; do python "$s.py"; done
+
+      - name: Check the viewer still reads every print style, at scale too
+        shell: bash
+        run: |
+          node tests/real.test.js | tee real-test.txt
+          node tests/scale.js --quick | tee -a real-test.txt
+
+      - name: Keep the captures for inspection
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: captures-${{ matrix.group }}
+          path: |
+            tests/fixtures/real/
+            real-test.txt
+          if-no-files-found: ignore
+
+      - name: Open an issue (once) when the latest releases break parsing
+        if: failure()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Compatibility (${{ matrix.group }}): latest framework releases no longer parse cleanly"
+          if gh issue list --state open --search "$title in:title" --json number --jq '.[0].number' | grep -q .; then
+            echo "issue already open"; exit 0
+          fi
+          versions=$(python -c "import json,glob;print('; '.join(json.load(open(f))['framework']+': '+', '.join(k+' '+v for k,v in json.load(open(f))['versions'].items()) for f in sorted(glob.glob('tests/fixtures/real/*/manifest.json'))))" 2>/dev/null || echo "capture step failed")
+          fails=$(grep '^FAIL' real-test.txt 2>/dev/null | head -40)
+          printf 'Weekly compat run (%s) failed.\n\nVersions: %s\n\n```\n%s\n```\n\nRun and captured logs: %s/%s/actions/runs/%s\n' \
+            "${{ matrix.group }}" "$versions" "${fails:-see the workflow log}" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > body.md
+          gh issue create --title "$title" --body-file body.md

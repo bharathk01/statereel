@@ -1,0 +1,53 @@
+{
+  "key": "google_adk",
+  "framework": "Google ADK",
+  "versions": {
+    "google-adk": "2.11.0",
+    "google-genai": "2.29.0"
+  },
+  "python": "3.12.10",
+  "captured_at": "2026-10-09",
+  "generator": "tools/capture/google_adk_capture.py (scripted BaseLlm, no API key)",
+  "fixtures": {
+    "print_event.log": {
+      "adapter": "pydantic-str",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "input_tokens": 930,
+      "output_tokens": 57,
+      "user_prompt": false
+    },
+    "repr_event.log": {
+      "adapter": "repr-stream",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "input_tokens": 930,
+      "output_tokens": 57,
+      "user_prompt": false
+    },
+    "event_json.log": {
+      "adapter": "ndjson-events",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "input_tokens": 930,
+      "output_tokens": 57,
+      "user_prompt": false
+    },
+    "session_events.log": {
+      "adapter": "repr-stream",
+      "tool_calls": 2,
+      "paired": 2,
+      "tool_errors": 1,
+      "model_calls": 2,
+      "input_tokens": 930,
+      "output_tokens": 57,
+      "user_prompt": true
+    }
+  }
+}
